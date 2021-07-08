@@ -2,7 +2,7 @@
 # coding=utf-8
 
 '''
-python发送emai测试
+python发送email测试
 源码地址:
 https://juejin.cn/post/6981334508553371655
 '''
