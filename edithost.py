@@ -29,7 +29,8 @@ def show():
     input(exit)
 
 
-def add(addStr):
+def add():
+    addStr = input('新增内容:')
     with open(host, 'a+') as f:
         f.write(addStr + '\n')
     print(addStr + '\thava add')
@@ -63,7 +64,6 @@ if __name__ == '__main__':
         if (operateType == "2"):
             edit()
         if (operateType == "3"):
-            addStr=input('新增内容:')
-            add(addStr)
+            add()
     else:
         ctypes.windll.shell32.ShellExcutew(None, 'runas', sys.executable, __file__, None, 1)
