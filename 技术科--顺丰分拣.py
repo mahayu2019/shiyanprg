@@ -1,8 +1,5 @@
-#!/usr/bin/env python
-# coding=utf-8
-'''
-列表分类
-'''
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 import json
 
 datas = [
@@ -457,25 +454,22 @@ datas = [
     ['单*成', '山东省日照市日照职业技术学院'],
     ['韩*红', '上海市杨浦区隆昌路619号10号楼二楼'],
     ['魏*琪', '北京市丰台区汉威国际广场4区12号楼'],
-    ['杨*康', '北京市丰台区丰台科技园汉威广场12栋']
+    ['杨*康', '北京市丰台区丰台科技园汉威广场12栋'],
 ]
-
-dict_dz = {}  # 最终字典
-shmz = []  # 省列表
-dz = []  # 地址列表
-
-# 输出省名称,形成list
-for d in datas:
-    s = (d[1][0:3])
-    if s not in shmz:
-        shmz.append(s)
-
-for x in shmz:  # 遍历省会名称
-    for p in datas:
-        if p[1][0:3] == x:  # 地址薄中的省会名称和省会列表比对筛选
-            dz.append(p)  # 匹配地址加入列表
-    dict_dz[x] = dz  # 同省会地址加入字典
-    dz = []  # 清空字典备用
-d1 = json.dumps(dict_dz,indent=1,ensure_ascii=False)
-
+city = []
+alls = []
+d = {}
+c = {}
+for sh in datas:
+    if sh[1].find("省") > 0:
+        tcity = sh[1].split("省")[0]
+        jieguo = {tcity + "省": sh}
+    else:
+        tcity = sh[1].split("市")[0]
+        jieguo = {tcity + "市": sh}
+    for key, value in jieguo.items():
+        if key not in d:
+            d[key] = []
+        d[key].append(str(value))
+d1 = json.dumps(d, indent=1, ensure_ascii=False)
 print(d1)
